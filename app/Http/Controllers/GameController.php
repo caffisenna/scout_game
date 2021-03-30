@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -6,7 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Game;
 use Illuminate\Http\Request;
 
-class GameController extends Controller {
+class GameController extends Controller
+{
 
 	/**
 	 * Display a listing of the resource.
@@ -15,7 +18,15 @@ class GameController extends Controller {
 	 */
 	public function index()
 	{
-		$games = Game::orderBy('id', 'desc')->paginate(10);
+		if (isset($_REQUEST['q']) == 'nogear') {
+			$games = Game::where('gear', 'なし')->paginate(100);
+		} elseif (isset($_REQUEST['team_flag']) == 'individual') {
+			$games = Game::where('team_flag', 'LIKE', '%個人%')->paginate(100);
+		} elseif (isset($_REQUEST['team_only']) == 'true') {
+			$games = Game::where('team_flag', 'LIKE', '%チーム%')->paginate(100);
+		} else {
+			$games = Game::orderBy('id', 'desc')->paginate(10);
+		}
 
 		return view('games.index', compact('games'));
 	}
@@ -41,7 +52,17 @@ class GameController extends Controller {
 		$game = new Game();
 
 		$game->title = $request->input("title");
-        $game->body = $request->input("body");
+		$game->target = $request->input("target");
+		$game->team_flag = $request->input("team_flag");
+		$game->duration = $request->input("duration");
+		$game->at_least = $request->input("at_least");
+		$game->field = $request->input("field");
+		$game->gear = $request->input("gear");
+		$game->how_to = $request->input("how_to");
+		$game->over_view = $request->input("over_view");
+		$game->hint = $request->input("hint");
+		$game->safty_point = $request->input("safty_point");
+		$game->arrangement = $request->input("arrangement");
 
 		$game->save();
 
@@ -86,7 +107,7 @@ class GameController extends Controller {
 		$game = Game::findOrFail($id);
 
 		$game->title = $request->input("title");
-        $game->body = $request->input("body");
+		$game->body = $request->input("body");
 
 		$game->save();
 
@@ -106,5 +127,4 @@ class GameController extends Controller {
 
 		return redirect()->route('games.index')->with('message', 'Item deleted successfully.');
 	}
-
 }
