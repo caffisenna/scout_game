@@ -11,6 +11,11 @@
 |
 */
 
+use App\Game;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Game
+Route::resource("games","GameController");
