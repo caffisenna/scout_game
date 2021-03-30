@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project name</a>
+                <a class="navbar-brand" href="#">スカウトゲーム</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -45,7 +46,8 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
+            <!--/.nav-collapse -->
         </div>
     </nav>
 
@@ -63,4 +65,5 @@
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
     @yield('scripts')
 </body>
+
 </html>
