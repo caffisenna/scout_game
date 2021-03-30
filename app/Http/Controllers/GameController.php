@@ -53,7 +53,7 @@ class GameController extends Controller
 
 		$game->title = $request->input("title");
 		$game->target = $request->input("target");
-		$game->team_flag = $request->input("team_flag");
+		// $game->team_flag = $request->input("team_flag");
 		$game->duration = $request->input("duration");
 		$game->at_least = $request->input("at_least");
 		$game->field = $request->input("field");
@@ -63,6 +63,11 @@ class GameController extends Controller
 		$game->hint = $request->input("hint");
 		$game->safty_point = $request->input("safty_point");
 		$game->arrangement = $request->input("arrangement");
+
+		if($request->input("team_flag")){
+			$team_flag = implode(',',$request->input("team_flag"));
+			$game->team_flag = $team_flag;
+		}
 
 		$game->save();
 

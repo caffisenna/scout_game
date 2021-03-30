@@ -43,7 +43,13 @@
 
             <div class="form-group @if($errors->has('team_flag')) has-error @endif">
                 <label for="team_flag-field">区分(チーム or 個人)</label>
-                <input type="text" id="team_flag-field" name="team_flag" class="form-control" value="{{ old("team_flag") }}" />
+                <div class="checkbox">
+                    <label><input type="checkbox" name="team_flag[]" value="個人">個人</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="team_flag[]" value="チーム">チーム</label>
+                </div>
+                <!-- <input type="text" id="team_flag-field" name="team_flag" class="form-control" value="{{ old("team_flag") }}" /> -->
                 @if($errors->has("team_flag"))
                 <span class="help-block">{{ $errors->first("team_flag") }}</span>
                 @endif
