@@ -25,7 +25,7 @@ class CreateGamesTable extends Migration {
 			$table->text('over_view');
 			$table->text('hint');
 			$table->text('safty_point');
-			$table->text('arangement');
+			$table->text('arrangement');
             $table->timestamps();
         });
 	}
